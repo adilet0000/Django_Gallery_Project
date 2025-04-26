@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'gallery/notifications.css' %}">
+{% endblock %}
+
+{% block title %}Ваши уведомления{% endblock %}
+
+{% block content %}
+<div class="notifications-container">
+   <h1 class="notifications-title">Ваши уведомления</h1>
+
+   {% if new_packs %}
+      <ul class="notifications-list">
+         {% for pack in new_packs %}
+         <li class="notification-item">
+            <a href="{% url 'pack_detail' pack.slug %}" class="notification-link">{{ pack.title }}</a> — добавлен у автора <strong class="notification-model">{{ pack.model.name }}</strong> 
+            <span class="notification-date">{{ pack.created_at|date:"d M Y, H:i" }}</span>
+         </li>
+         {% endfor %}
+      </ul>
+   {% else %}
+      <p class="no-notifications">Пока нет новых паков от подписанных авторов.</p>
+   {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+   <link rel="stylesheet" href="{% static 'gallery/admin_suggestions.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Предложения контента</h1>
+
+<div class="suggestions-container">
+   {% for suggestion in suggestions %}
+   <div class="suggestion-card">
+      <h3 class="suggestion-title">{{ suggestion.get_suggestion_type_display }}</h3>
+      {% if suggestion.suggestion_type == 'model' %}
+         <p><strong>Имя автора:</strong> {{ suggestion.model_name }}</p>
+         <p><strong>Описание:</strong> {{ suggestion.model_bio }}</p>
+         <img src="{{ suggestion.model_avatar.url }}" alt="Аватар модели" class="suggestion-avatar">
+      {% elif suggestion.suggestion_type == 'pack' %}
+         <p><strong>Название пака:</strong> {{ suggestion.pack_title }}</p>
+         <p><strong>Описание:</strong> {{ suggestion.pack_description }}</p>
+         <a href="{{ suggestion.pack_photos.url }}" class="btn btn-primary">Скачать</a>
+      {% endif %}
+
+      <!-- Форма для отправки действий -->
+      <form action="{% url 'admin_suggestion_action' %}" method="post" class="action-form">
+         {% csrf_token %}
+         <input type="hidden" name="suggestion_id" value="{{ suggestion.id }}">
+         <button type="submit" name="action" value="approve" class="btn btn-success">Одобрить</button>
+         <button type="submit" name="action" value="reject" class="btn btn-danger">Отклонить</button>
+      </form>
+   </div>
+{% endfor %}
+</div>
+{% endblock %}

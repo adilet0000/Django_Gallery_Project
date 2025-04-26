@@ -1,0 +1,131 @@
+:root {
+    --bg-primary: #0F172A;
+    --bg-secondary: #1E293B;
+    --bg-card: #252F3F;
+    --primary-color: #7C3AED;
+    --primary-hover: #6D28D9;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --border-color: #334155;
+    --error-color: #E11D48;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Контейнер формы */
+.content-suggestion-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px var(--shadow-color);
+}
+
+/* Заголовок */
+.content-suggestion-container h1 {
+    text-align: center;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+/* Форма */
+.suggestion-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Общие стили для полей */
+.suggestion-form input[type="text"],
+.suggestion-form textarea,
+.suggestion-form select,
+.suggestion-form input[type="file"] {
+    width: 100%;
+    padding: 12px 0px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Поля ввода */
+.suggestion-form input[type="text"]:focus,
+.suggestion-form textarea:focus,
+.suggestion-form select:focus,
+.suggestion-form input[type="file"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+/* Поле textarea */
+.suggestion-form textarea {
+    min-height: 100px;
+    max-height: 200px;
+    resize: none;
+}
+
+/* Поля загрузки файлов */
+.suggestion-form input[type="file"] {
+    padding: 10px 0px 10px 0px;
+    border: 2px dashed var(--border-color);
+    cursor: pointer;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Кнопка отправки */
+.suggestion-form .btn-primary {
+    align-self: center;
+    padding: 14px 28px;
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.suggestion-form .btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+/* Стили ошибок */
+.suggestion-form .errorlist {
+    color: var(--error-color);
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+/* Вспомогательный текст */
+.suggestion-form .helptext {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .content-suggestion-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .content-suggestion-container h1 {
+        font-size: 1.8em;
+    }
+
+    .suggestion-form .btn-primary {
+        width: 100%;
+    }
+}

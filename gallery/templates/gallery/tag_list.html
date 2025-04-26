@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Теги{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'gallery/tag_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="tag-list-container">
+   <h1 class="tag-list-title">Все теги:</h1>
+   <ul class="tag-list">
+      {% for tag in tags %}
+         <li class="tag-item">
+            <a href="{% url 'filter_by_tag' tag.slug %}" class="tag-link">{{ tag.name }}</a>
+         </li>
+      {% endfor %}
+   </ul>
+</div>
+{% endblock %}

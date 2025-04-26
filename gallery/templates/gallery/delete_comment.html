@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Удалить комментарий{% endblock %}
+
+{% block head %}
+   <link rel="stylesheet" href="{% static 'gallery/delete_comment.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="delete-comment-container">
+   <h3 class="delete-comment-title">Удалить комментарий</h3>
+   <p class="delete-comment-message">Вы уверены, что хотите удалить этот комментарий?</p>
+   <form method="post" class="delete-comment-form">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger delete-btn">Удалить</button>
+      <a href="{% url 'pack_detail' comment.pack.slug %}" class="btn btn-secondary cancel-btn">Отмена</a>
+   </form>
+</div>
+{% endblock %}

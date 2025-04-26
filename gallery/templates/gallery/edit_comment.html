@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Редактировать комментарий{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'gallery/edit_comment.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="edit-comment-container">
+   <h3 class="edit-comment-title">Редактировать комментарий</h3>
+   <form method="post" class="edit-comment-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary save-btn">Сохранить изменения</button>
+      <a href="{% url 'pack_detail' comment.pack.pk %}" class="btn btn-secondary cancel-btn">Отмена</a>
+   </form>
+</div>
+{% endblock %}

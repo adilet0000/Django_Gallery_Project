@@ -1,0 +1,130 @@
+:root {
+    --primary-color: #7C3AED;
+    --primary-hover: #6D28D9;
+    --bg-dark: #0F172A;
+    --bg-darker: #020617;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --border-color: #1E293B;
+    --nav-height: 80px;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+ }
+ 
+ .mobile-menu-btn {
+     display: none;
+     position: fixed;
+     top: 10px;
+     right: 10px;
+     z-index: 1000;
+     background: var(--primary-color);
+     color: var(--text-primary);
+     border: none;
+     border-radius: 4px;
+     font-size: 24px;
+     padding: 5px 10px;
+     cursor: pointer;
+     transition: background 0.3s ease;
+ }
+ 
+ .mobile-menu-btn:hover {
+     background: var(--primary-hover);
+ }
+ 
+ .mobile-header {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: var(--bg-dark);
+     z-index: 1500;
+     overflow-y: auto;
+     color: var(--text-primary);
+ }
+ 
+ .mobile-header-container {
+     padding: 20px;
+ }
+ 
+ .mobile-close-btn {
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     font-size: 30px;
+     background: none;
+     color: var(--text-primary);
+     border: none;
+     cursor: pointer;
+ }
+ 
+ .mobile-nav-list {
+     list-style: none;
+     padding: 0;
+ }
+ 
+ .mobile-nav-item {
+     margin-bottom: 15px;
+     border-bottom: 1px solid var(--border-color);
+ }
+ 
+ .mobile-nav-link {
+     text-decoration: none;
+     color: var(--text-primary);
+     display: block;
+     padding: 15px 10px;
+     margin-top: 2rem;
+     transition: background 0.3s ease;
+ }
+ 
+ .mobile-nav-link:hover {
+     background: var(--primary-color);
+ }
+ 
+ .mobile-search-form {
+     margin-top: 20px;
+     display: flex;
+ }
+ 
+ .mobile-search-input {
+     flex-grow: 1;
+     padding: 10px;
+     margin-right: 10px;
+     background: var(--bg-darker);
+     color: var(--text-primary);
+     border: 1px solid var(--border-color);
+     border-radius: 4px 0 0 4px;
+ }
+ 
+ .mobile-search-btn {
+     padding: 10px;
+     background: var(--primary-color);
+     color: var(--text-primary);
+     border: 1px solid var(--primary-color);
+     border-radius: 0 4px 4px 0;
+     cursor: pointer;
+     transition: background 0.3s ease;
+ }
+ 
+ .mobile-search-btn:hover {
+     background: var(--primary-hover);
+ }
+ 
+ .hidden {
+     display: none !important;
+ }
+ 
+ /* Responsive Breakpoint */
+ @media (max-width: 1221px) {
+     .site-header .header-container {
+         display: none; /* Hide desktop header */
+     }
+ 
+     .mobile-menu-btn {
+         display: block;
+     }
+ 
+     .mobile-header {
+         display: block;
+     }
+ }

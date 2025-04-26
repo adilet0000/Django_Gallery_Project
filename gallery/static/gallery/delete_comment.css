@@ -1,0 +1,94 @@
+:root {
+   --bg-primary: #0F172A;
+   --bg-secondary: #1E293B;
+   --bg-card: #252F3F;
+   --primary-color: #7C3AED;
+   --primary-hover: #6D28D9;
+   --danger-color: #DC2626;
+   --text-primary: #F8FAFC;
+   --text-secondary: #94A3B8;
+   --border-color: #334155;
+   --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Контейнер для удаления комментария */
+.delete-comment-container {
+   max-width: 600px;
+   margin: 40px auto;
+   padding: 30px;
+   background-color: var(--bg-secondary);
+   border-radius: 12px;
+   box-shadow: 0 6px 12px var(--shadow-color);
+   text-align: center;
+}
+
+/* Заголовок */
+.delete-comment-title {
+   font-size: 1.8rem;
+   color: var(--text-primary);
+   margin-bottom: 20px;
+   font-weight: 600;
+}
+
+/* Сообщение */
+.delete-comment-message {
+   font-size: 1rem;
+   color: var(--text-secondary);
+   margin-bottom: 20px;
+}
+
+/* Кнопка удаления */
+.delete-btn {
+   background-color: var(--danger-color);
+   color: white;
+   font-size: 1rem;
+   font-weight: 600;
+   padding: 12px 20px;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+   background-color: #B91C1C;
+   /* Тёмно-красный для наведения */
+   transform: translateY(-2px);
+   box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Ссылка "Отмена" */
+.cancel-btn {
+   display: inline-block;
+   margin-top: 10px;
+   padding: 12px 20px;
+   background-color: var(--bg-card);
+   color: var(--text-secondary);
+   text-decoration: none;
+   border-radius: 8px;
+   font-size: 1rem;
+   font-weight: 600;
+   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cancel-btn:hover {
+   background-color: var(--border-color);
+   color: var(--text-primary);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+   .delete-comment-container {
+      padding: 20px;
+   }
+
+   .delete-btn,
+   .cancel-btn {
+      font-size: 0.9rem;
+      padding: 10px 16px;
+   }
+
+   .delete-comment-title {
+      font-size: 1.5rem;
+   }
+}

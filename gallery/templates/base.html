@@ -1,0 +1,84 @@
+{% load static %}
+{% include 'gallery/header.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+   <title>{% block title %}Галерея{% endblock %}</title>
+
+   <link rel="stylesheet" href="{% static 'gallery/style.css' %}">
+   
+
+   {% block head %}{% endblock %}
+
+</head>
+<body>
+   {% block header %}
+   <header class="site-header" >
+      <div class="container header-container" id="global-header">
+         <h1 class="logo"><a href="{% url 'index' %}" class="logo-link">Gallery</a></h1>
+
+         <nav class="main-nav">
+            <ul class="nav-list">
+               {% if user.is_authenticated %}
+                  <li class="nav-item"><a href="{% url 'user_profile' user.username %}" class="nav-link">Профиль</a></li>
+                  
+                  {% if user.is_staff %}
+                     <li class="nav-item"><a href="{% url 'admin_suggestions' %}" class="nav-link">Панель модерации</a></li>
+                  {% else %}
+                     <li class="nav-item"><a href="{% url 'submit_suggestion' %}" class="nav-link">Предложить контент</a></li>
+                  {% endif %}
+                  
+                  <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Выйти</a></li>
+               {% else %}
+                  <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Войти</a></li>
+                  <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link">Регистрация</a></li>
+               {% endif %}
+            </ul>
+         </nav>
+         
+         <form action="{% url 'search' %}" method="get" class="search-form" accept-charset="utf-8">
+            <input 
+                type="text" 
+                name="q" 
+                id="search-input" 
+                class="search-input" 
+                placeholder="Поиск моделей или паков..." 
+                autocomplete="off"
+                pattern=".*" 
+            >
+            <button type="submit" class="search-btn">Найти</button>
+            <ul id="search-suggestions" class="suggestions-list"></ul>
+        </form>
+        
+         {% if user.is_authenticated %}
+            <a href="{% url 'favorites_list' %}" class="nav-link favorites-link">Избранное</a>
+            <a href="{% url 'notifications' %}" class="nav-link notifications-link">Уведомления</a>
+         {% endif %}
+      </div>
+   </header>
+   {% endblock header %}
+
+   <!-- Основной контент -->
+   <main class="site-main">
+      <div class="container content-container">
+         {% block content %}{% endblock %}
+      </div>
+   </main>
+
+   <!-- Футер -->
+   <footer class="site-footer">
+      <div class="container footer-container">
+         <p class="footer-text">&copy; 2025 Галерея. Все права защищены.</p>
+      </div>
+   </footer>
+
+   <script src="{% static 'js/autocomplete.js' %}"></script>
+   <script src="{% static 'js/burger.js' %}"></script>
+
+</body>
+</html>

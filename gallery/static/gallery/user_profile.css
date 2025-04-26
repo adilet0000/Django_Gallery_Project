@@ -1,0 +1,351 @@
+/* Основные переменные */
+:root {
+   --bg-primary: #0F172A;
+   --bg-secondary: #1E293B;
+   --bg-card: #252F3F;
+   --primary-color: #7C3AED;
+   --primary-hover: #6D28D9;
+   --success-color: #059669;
+   --text-primary: #F8FAFC;
+   --text-secondary: #94A3B8;
+   --border-color: #334155;
+   --shadow-color: rgba(124, 58, 237, 0.1);
+   --rating-color: #10B981;
+}
+
+/* Основной контейнер профиля */
+.profile-container {
+   max-width: 900px;
+   margin: 3rem auto;
+   padding: 2.5rem;
+   background: var(--bg-secondary);
+   border-radius: 16px;
+   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+   animation: fadeIn 0.6s ease-out;
+}
+
+/* Заголовок профиля */
+.profile-header {
+   font-size: 2rem;
+   margin-bottom: 2.5rem;
+   text-align: center;
+   color: var(--text-primary);
+   position: relative;
+   padding-bottom: 1rem;
+}
+
+.profile-header::after {
+   content: '';
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 100px;
+   height: 3px;
+   background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
+   border-radius: 2px;
+}
+
+.username {
+   color: var(--primary-color);
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+}
+
+/* Секции профиля */
+.profile-section {
+   margin-bottom: 3rem;
+   background: var(--bg-card);
+   border-radius: 12px;
+   padding: 2rem;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.section-header {
+   font-size: 1.5rem;
+   margin-bottom: 1.5rem;
+   color: var(--text-primary);
+   position: relative;
+   padding-left: 1rem;
+   display: flex;
+   align-items: center;
+}
+
+.section-header::before {
+   content: '';
+   position: absolute;
+   left: 0;
+   height: 100%;
+   width: 4px;
+   background: var(--primary-color);
+   border-radius: 2px;
+}
+
+/* Списки комментариев и оценок */
+.comments-list,
+.ratings-list {
+   display: grid;
+   gap: 1.5rem;
+
+}
+
+/* Элементы списка */
+.comment-item,
+.rating-item {
+   background: var(--bg-secondary);
+   border-radius: 12px;
+   padding: 1.5rem;
+   position: relative;
+   transition: all 0.3s ease;
+}
+
+.comment-item:hover,
+.rating-item:hover {
+   transform: translateY(-4px) translateX(4px);
+   box-shadow: -4px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.comment-item::before,
+.rating-item::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   height: 2px;
+   background: linear-gradient(to right, var(--primary-color), transparent);
+   border-radius: 2px;
+}
+
+/* Ссылки */
+.pack-link,
+.model-link {
+   color: var(--primary-color);
+   text-decoration: none;
+   font-weight: 600;
+   transition: all 0.3s ease;
+   position: relative;
+   padding-bottom: 2px;
+}
+
+.pack-link::after,
+.model-link::after {
+   content: '';
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 0;
+   height: 2px;
+   background: var(--primary-color);
+   transition: width 0.3s ease;
+}
+
+.pack-link:hover::after,
+.model-link:hover::after {
+   width: 100%;
+}
+
+.pack-link:hover,
+.model-link:hover {
+   color: var(--primary-hover);
+}
+
+/* Дата комментария */
+.comment-date {
+   color: var(--text-secondary);
+   font-size: 0.875rem;
+   margin-top: 0.75rem;
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+}
+
+.comment-date::before {
+   content: '•';
+   color: var(--primary-color);
+}
+
+/* Пустое сообщение */
+.empty-message {
+   text-align: center;
+   color: var(--text-secondary);
+   font-size: 1.1rem;
+   padding: 2rem;
+   background: var(--bg-secondary);
+   border-radius: 12px;
+   border: 2px dashed var(--border-color);
+}
+
+/* Оценка */
+.rating-score {
+   font-size: 1.2rem;
+   color: var(--rating-color);
+   font-weight: 700;
+   background: rgba(16, 185, 129, 0.1);
+   padding: 0.25rem 0.75rem;
+   border-radius: 6px;
+   display: inline-block;
+}
+
+/* Параграфы внутри элементов */
+.comment-item p,
+.rating-item p {
+   margin: 0.75rem 0;
+   color: var(--text-primary);
+}
+
+.comment-item strong,
+.rating-item strong {
+   color: var(--text-secondary);
+   font-weight: 500;
+}
+
+ul {
+   list-style-type: none;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+   from {
+      opacity: 0;
+      transform: translateY(20px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+
+   .comments-list,
+   .ratings-list {
+      display: grid;
+      gap: 1.5rem;
+      padding: 0px;
+   }
+
+
+   .profile-container {
+      margin: 1rem;
+      padding: 1.5rem;
+   }
+
+   .profile-section {
+      padding: 1.5rem;
+   }
+
+   .profile-header {
+      font-size: 1.5rem;
+   }
+
+   .section-header {
+      font-size: 1.25rem;
+   }
+
+   .comment-item,
+   .rating-item {
+      padding: 1rem;
+   }
+
+   .ratings-group {
+      flex-direction: column;
+   }
+}
+
+
+/* Секция настроек профиля */
+.profile-settings {
+   margin-bottom: 3rem;
+   background: var(--bg-card);
+   border-radius: 12px;
+   padding: 2rem;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.settings-form .form-group {
+   margin-bottom: 1.5rem;
+}
+
+.settings-form label {
+   display: block;
+   margin-bottom: 0.5rem;
+   color: var(--text-primary);
+   font-weight: 600;
+}
+
+.settings-form input[type="file"],
+.settings-form input[type="text"] {
+   width: 100%;
+   padding: 0.75rem;
+   border: 2px solid var(--border-color);
+   border-radius: 8px;
+   background: var(--bg-card);
+   color: var(--text-primary);
+   font-size: 1rem;
+}
+
+.settings-form input[type="file"] {
+   cursor: pointer;
+}
+
+.settings-form input:focus {
+   outline: none;
+   border-color: var(--primary-color);
+   box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+.avatar-preview {
+   margin-top: 1rem;
+   text-align: center;
+}
+
+.avatar-preview .avatar-image {
+   max-width: 120px;
+   max-height: 120px;
+   border-radius: 50%;
+   border: 2px solid var(--primary-color);
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Группировка оценок */
+.ratings-group {
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+}
+
+/* Подраздел оценок */
+.ratings-subgroup {
+   background: var(--bg-card);
+   padding: 1.5rem;
+   border-radius: 12px;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Заголовок подгруппы */
+.subgroup-header {
+   font-size: 1.5rem;
+   color: var(--text-primary);
+   margin-bottom: 1rem;
+   position: relative;
+   padding-left: 1rem;
+   display: flex;
+   align-items: center;
+}
+
+.subgroup-header::before {
+   content: '';
+   position: absolute;
+   left: 0;
+   height: 100%;
+   width: 4px;
+   background: var(--primary-color);
+   border-radius: 2px;
+}
+
+/* Адаптивность для подгрупп */

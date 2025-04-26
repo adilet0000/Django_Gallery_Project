@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ model.name }} — Паки{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'gallery/main.css' %}">
+<link rel="stylesheet" href="{% static 'gallery/model_detail.css' %}">
+<script src="{% static 'js/subscription.js' %}"></script>
+<script src="{% static 'js/rating.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<header class="packs-header">
+   <h1 class="packs-title">Паки {{ model.name }}</h1>
+   <p class="packs-subscribers">Подписчиков: {{ model.subscribers.count }}</p>
+   <a href="{% url 'index' %}"  class="auth-button">На главную</a>
+
+   <div class="rating-info">
+      <h3 class="packs-rating">Средний рейтинг: {{ average_rating|floatformat:1 }}</h3>
+      <p class="rating-count">Количество оценок: {{ total_ratings }}</p>
+   </div>
+
+   {% if user.is_authenticated %}
+
+   {% load model_tags %}
+
+   <form method="post" class="rating-form" 
+      data-slug="{{ model.slug }}" 
+      data-app-label="{{ model|get_app_label }}" 
+      data-model-name="{{ model|get_model_name }}">
+       {% csrf_token %}
+       <div class="stars">
+           {% for i in "54321" %}
+           <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" class="star-input">
+           <label for="star{{ i }}" class="star-label" title="{{ i }} звёзд"></label>
+           {% endfor %}
+       </div>
+       <button type="submit" class="btn btn-primary">Поставить оценку</button>
+   </form>
+   {% else %}
+   <div class="auth-message">
+       Чтобы поставить оценку,
+       <a href="{% url 'login' %}" class="auth-button">войдите в систему</a>
+   </div>
+   {% endif %}
+
+
+   
+
+   {% if user.is_authenticated %}
+   <div class="subscription-buttons">
+      {% if is_subscribed %}
+      <form action="{% url 'unsubscribe' model.slug %}" method="post">
+         {% csrf_token %}
+         <button type="submit" class="btn btn-danger">Отписаться</button>
+      </form>
+      {% else %}
+      <form action="{% url 'subscribe' model.slug %}" method="post">
+         {% csrf_token %}
+         <button type="submit" class="btn btn-success">Подписаться</button>
+      </form>
+      {% endif %}
+   </div>
+   {% else %}
+   <div class="auth-message">
+      Чтобы подписаться на автора,
+      <a href="{% url 'login' %}" class="auth-button">войдите в систему</a>
+   </div>
+   {% endif %}
+</header>
+
+
+<div class="tags-container">
+   <h3 class="tags-title">Теги:</h3>
+   <div class="tags">
+      {% for tag in model.tags.all %}
+      <a href="{% url 'filter_by_tag' tag.slug %}" class="tag">{{ tag.name }}</a>
+      {% endfor %}
+   </div>
+</div>
+
+<div class="packs-grid">
+   {% for info in packs_info %}
+   <div class="pack-card">
+      <img src="{{ info.pack.preview.url }}" alt="{{ info.pack.title }}" class="pack-image">
+      <h2 class="pack-title">{{ info.pack.title }}</h2>
+      <p class="pack-description">{{ info.pack.description }}</p>
+      <p class="pack-content">
+         <span>{{ info.photos_count }}</span> картинок,
+         <span>{{ info.videos_count }}</span> видео
+      </p>
+      <a href="{% url 'pack_detail' info.pack.slug %}" class="pack-link">Смотреть пак</a>
+   </div>
+   {% endfor %}
+</div>
+
+{% endblock %}

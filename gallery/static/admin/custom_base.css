@@ -1,0 +1,448 @@
+:root {
+   --primary-color: #7C3AED;
+   --primary-hover: #6D28D9;
+   --bg-dark: #0F172A;
+   --bg-darker: #020617;
+   --text-primary: #F8FAFC;
+   --text-secondary: #94A3B8;
+   --border-color: #1E293B;
+   --nav-height: 80px;
+   --shadow-color: rgba(0, 0, 0, 0.3);
+   --danger-color: #DC2626;
+   --success-color: #059669;
+}
+
+/* Base */
+html {
+   box-sizing: border-box;
+}
+
+*, *::before, *::after {
+   box-sizing: inherit;
+}
+
+body {
+   font-family: 'Inter', Arial, sans-serif;
+   margin: 0;
+   min-height: 100vh;
+   background-color: var(--bg-dark);
+   color: var(--text-primary);
+   line-height: 1.6;
+   display: flex;
+   flex-direction: column;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5 {
+   font-weight: 700;
+   line-height: 1.2;
+   margin: 2rem 0 1rem;
+}
+
+h1 { font-size: 1.75rem; color: var(--primary-color); }
+h2 { font-size: 1.5rem; color: var(--text-primary); }
+h3 { font-size: 1.2rem; color: var(--text-secondary); }
+
+a {
+   color: var(--primary-color);
+   text-decoration: none;
+   transition: all 0.3s ease;
+}
+
+a:not(.button):hover {
+   color: var(--primary-hover);
+   text-decoration: underline;
+}
+
+/* Layout */
+.wrapper {
+   display: flex;
+   flex: 1;
+}
+
+/* Header */
+#header {
+   background-color: var(--bg-darker);
+   height: var(--nav-height);
+   padding: 0 2rem;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   border-bottom: 3px solid var(--primary-color);
+   box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+#branding h1 {
+   margin: 0;
+   font-weight: 800;
+}
+
+#branding h1 a {
+   color: var(--primary-color);
+   font-size: 1.75rem;
+   padding: 0.5rem 1rem;
+   border-radius: 0.5rem;
+   transition: all 0.3s ease;
+}
+
+#branding h1 a:hover {
+   color: var(--primary-hover);
+   transform: translateY(-2px);
+   text-decoration: none;
+}
+
+/* Sidebar */
+#nav-sidebar {
+   background-color: var(--bg-darker);
+   width: 280px;
+   padding: 2rem;
+   border-right: 1px solid var(--border-color);
+   height: calc(100vh - var(--nav-height));
+   overflow-y: auto;
+}
+
+#nav-sidebar a {
+   display: block;
+   color: var(--text-secondary);
+   padding: 0.75rem 1rem;
+   margin-bottom: 0.5rem;
+   border-radius: 0.5rem;
+   transition: all 0.3s ease;
+}
+
+#nav-sidebar a:hover {
+   color: var(--text-primary);
+   background-color: rgba(124, 58, 237, 0.1);
+   transform: translateX(4px);
+   text-decoration: none;
+}
+
+/* Content */
+#content {
+   flex: 1;
+   padding: 2rem;
+   margin: 1rem;
+   background: var(--bg-dark);
+   border-radius: 1rem;
+   box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+/* Tables */
+table {
+   width: 100%;
+   border-collapse: separate;
+   border-spacing: 0;
+   margin: 1.5rem 0;
+   background: var(--bg-darker);
+   border-radius: 0.75rem;
+   overflow: hidden;
+   box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+th, td {
+   padding: 1rem 1.5rem;
+   text-align: left;
+}
+
+th {
+   background: var(--bg-darker);
+   color: var(--text-primary);
+   font-weight: 600;
+   border-bottom: 2px solid var(--primary-color);
+}
+
+td {
+   border-bottom: 1px solid var(--border-color);
+}
+
+tr:hover td {
+   background-color: rgba(124, 58, 237, 0.05);
+}
+
+/* Forms */
+.form-row {
+   margin-bottom: 1.5rem;
+}
+
+label {
+   display: block;
+   margin-bottom: 0.5rem;
+   color: var(--text-secondary);
+}
+
+input, textarea, select {
+   width: 100%;
+   padding: 0.75rem 1rem;
+   background: var(--bg-darker);
+   border: 1px solid var(--border-color);
+   border-radius: 0.5rem;
+   color: var(--text-primary);
+   transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+   outline: none;
+   border-color: var(--primary-color);
+   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* Buttons */
+.button, input[type="submit"], input[type="button"] {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0.75rem 1.5rem;
+   background: var(--primary-color);
+   color: white;
+   border: none;
+   border-radius: 0.5rem;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.3s ease;
+}
+
+.button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+   background: var(--primary-hover);
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Modules */
+.module {
+   background: var(--bg-darker);
+   border-radius: 0.75rem;
+   padding: 1.5rem;
+   margin-bottom: 1.5rem;
+   box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.module h2 {
+   margin-top: 0;
+   padding-bottom: 1rem;
+   border-bottom: 2px solid var(--border-color);
+}
+
+/* Messages */
+.errornote, .errorlist {
+   background: rgba(220, 38, 38, 0.1);
+   color: var(--danger-color);
+   padding: 1rem;
+   margin: 1rem 0;
+   border-radius: 0.5rem;
+   border: 1px solid var(--danger-color);
+}
+
+/* Pagination */
+.paginator {
+   display: flex;
+   justify-content: center;
+   gap: 0.5rem;
+   margin: 2rem 0;
+}
+
+.paginator a {
+   padding: 0.5rem 1rem;
+   background: var(--primary-color);
+   color: white;
+   border-radius: 0.5rem;
+}
+
+.paginator a:hover {
+   background: var(--primary-hover);
+   transform: translateY(-2px);
+   text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+   #header {
+      height: auto;
+      padding: 1rem;
+      flex-direction: column;
+      text-align: center;
+   }
+
+   .wrapper {
+      flex-direction: column;
+   }
+
+   #nav-sidebar {
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+   }
+
+   #content {
+      margin: 0.5rem;
+      padding: 1rem;
+   }
+}
+
+@media (max-width: 768px) {
+   body {
+      font-size: 14px;
+   }
+
+   #header {
+      padding: 0.75rem;
+   }
+
+   #branding h1 a {
+      font-size: 1.4rem;
+   }
+
+   .button, input[type="submit"], input[type="button"] {
+      width: 100%;
+   }
+
+   table {
+      display: block;
+      overflow-x: auto;
+   }
+}
+
+
+#content {
+   padding: 2rem;
+ }
+ 
+ h1 {
+   margin-bottom: 2rem;
+   padding-bottom: 1rem;
+   border-bottom: 2px solid var(--primary-color);
+ }
+ 
+ .object-tools {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   display: flex;
+   justify-content: flex-end;
+   margin-bottom: 2rem;
+ }
+ 
+ .object-tools .addlink {
+   background: var(--primary-color);
+   color: white;
+   padding: 0.75rem 1.5rem;
+   border-radius: 0.5rem;
+   font-weight: 600;
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   transition: all 0.3s ease;
+ }
+ 
+ .object-tools .addlink:hover {
+   background: var(--primary-hover);
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px var(--shadow-color);
+ }
+ 
+ #changelist {
+   background: var(--bg-darker);
+   border-radius: 1rem;
+   padding: 1.5rem;
+   box-shadow: 0 4px 20px var(--shadow-color);
+ }
+ 
+ #toolbar {
+   margin-bottom: 1.5rem;
+   padding: 1rem;
+   background: var(--bg-dark);
+   border-radius: 0.5rem;
+ }
+ 
+ #changelist-search {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+ }
+ 
+ #searchbar {
+   flex: 1;
+   padding: 0.75rem 1rem;
+   border-radius: 0.5rem;
+   background: var(--bg-darker);
+   border: 1px solid var(--border-color);
+   color: var(--text-primary);
+ }
+ 
+ .actions {
+   margin-bottom: 1.5rem;
+   padding: 1rem;
+   background: var(--bg-dark);
+   border-radius: 0.5rem;
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+ }
+ 
+ .action-counter {
+   color: var(--text-secondary);
+   margin-left: auto;
+ }
+ 
+ #result_list {
+   margin-top: 1.5rem;
+ }
+ 
+ #result_list th {
+   background: var(--primary-color);
+   color: white;
+   padding: 1rem;
+   font-weight: 600;
+ }
+ 
+ #result_list th a {
+   color: white;
+   text-decoration: none;
+ }
+ 
+ #result_list td {
+   padding: 1rem;
+   border-bottom: 1px solid var(--border-color);
+ }
+ 
+ #result_list tr:hover td {
+   background: rgba(124, 58, 237, 0.1);
+ }
+ 
+ .field-pack a {
+   color: var(--primary-color);
+   font-weight: 600;
+   padding: 0.5rem 0.75rem;
+   border-radius: 0.25rem;
+   transition: all 0.3s ease;
+ }
+ 
+ .field-pack a:hover {
+   background: rgba(124, 58, 237, 0.1);
+ }
+ 
+ .field-user {
+   color: var(--text-secondary);
+   font-weight: 500;
+ }
+ 
+ .paginator {
+   margin-top: 1.5rem;
+   text-align: center;
+   color: var(--text-secondary);
+ }
+ 
+ /* Чекбоксы */
+ .action-checkbox input[type="checkbox"] {
+   width: 1.25rem;
+   height: 1.25rem;
+   border-radius: 0.25rem;
+   border: 2px solid var(--border-color);
+   background: var(--bg-darker);
+   cursor: pointer;
+ }
+ 
+ .action-checkbox input[type="checkbox"]:checked {
+   background: var(--primary-color);
+   border-color: var(--primary-color);
+ }

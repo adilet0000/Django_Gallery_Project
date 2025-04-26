@@ -1,0 +1,116 @@
+:root {
+   --bg-primary: #0F172A;
+   --bg-secondary: #1E293B;
+   --bg-card: #252F3F;
+   --primary-color: #7C3AED;
+   --primary-hover: #6D28D9;
+   --text-primary: #F8FAFC;
+   --text-secondary: #94A3B8;
+   --border-color: #334155;
+   --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Общий стиль */
+body {
+   font-family: 'Inter', Arial, sans-serif;
+   background-color: var(--bg-primary);
+   color: var(--text-primary);
+   margin: 0;
+   padding: 0;
+   line-height: 1.6;
+}
+
+/* Контейнер редактирования комментария */
+.edit-comment-container {
+   max-width: 600px;
+   margin: 40px auto;
+   padding: 30px;
+   background-color: var(--bg-secondary);
+   border-radius: 12px;
+   box-shadow: 0 6px 12px var(--shadow-color);
+   text-align: center;
+}
+
+.edit-comment-title {
+   font-size: 1.8rem;
+   color: var(--text-primary);
+   margin-bottom: 20px;
+   font-weight: 600;
+}
+
+/* Форма редактирования */
+.edit-comment-form {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   align-items: stretch;
+}
+
+.edit-comment-form input,
+.edit-comment-form textarea {
+   width: 100%;
+   padding: 12px;
+   font-size: 1rem;
+   border-radius: 8px;
+   border: 2px solid var(--border-color);
+   background-color: var(--bg-card);
+   color: var(--text-primary);
+   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+   resize: vertical;
+}
+
+.edit-comment-form input:focus,
+.edit-comment-form textarea:focus {
+   border-color: var(--primary-color);
+   box-shadow: 0 0 0 3px var(--shadow-color);
+   outline: none;
+}
+
+/* Кнопка сохранения */
+.save-btn {
+   background-color: var(--primary-color);
+   color: var(--text-primary);
+   padding: 12px 20px;
+   font-size: 1rem;
+   font-weight: 600;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-btn:hover {
+   background-color: var(--primary-hover);
+   transform: translateY(-2px);
+   box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Кнопка отмены */
+.cancel-btn {
+   background-color: var(--bg-card);
+   color: var(--text-secondary);
+   padding: 12px 20px;
+   font-size: 1rem;
+   font-weight: 600;
+   text-decoration: none;
+   border-radius: 8px;
+   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cancel-btn:hover {
+   background-color: var(--border-color);
+   color: var(--text-primary);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+   .edit-comment-container {
+      padding: 20px;
+   }
+
+   .save-btn,
+   .cancel-btn {
+      font-size: 0.9rem;
+      padding: 10px 16px;
+   }
+}

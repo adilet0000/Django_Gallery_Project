@@ -1,0 +1,223 @@
+@media (prefers-color-scheme: dark) {
+   :root {
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-card: #252F3F;
+      --primary-color: #7C3AED;
+      --primary-hover: #6D28D9;
+      --success-color: #059669;
+      --danger-color: #DC2626;
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --border-color: #334155;
+      --shadow-color: rgba(124, 58, 237, 0.1);
+      --error-color: #e35f5f;
+      --message-success-bg: rgba(5, 150, 105, 0.2);
+      --message-warning-bg: rgba(202, 138, 4, 0.2);
+      --message-error-bg: rgba(220, 38, 38, 0.2);
+      --selected-bg: rgba(124, 58, 237, 0.15);
+      --selected-row: rgba(124, 58, 237, 0.3);
+   }
+}
+
+html[data-theme="dark"] {
+   --bg-primary: #0F172A;
+   --bg-secondary: #1E293B;
+   --bg-card: #252F3F;
+   --primary-color: #7C3AED;
+   --primary-hover: #6D28D9;
+   --success-color: #059669;
+   --danger-color: #DC2626;
+   --text-primary: #F8FAFC;
+   --text-secondary: #94A3B8;
+   --border-color: #334155;
+   --shadow-color: rgba(124, 58, 237, 0.1);
+   --error-color: #e35f5f;
+   --message-success-bg: rgba(5, 150, 105, 0.2);
+   --message-warning-bg: rgba(202, 138, 4, 0.2);
+   --message-error-bg: rgba(220, 38, 38, 0.2);
+   --selected-bg: rgba(124, 58, 237, 0.15);
+   --selected-row: rgba(124, 58, 237, 0.3);
+}
+
+/* === ТЕМНЫЙ ХЕДЕР === */
+#header {
+   background: var(--bg-secondary);
+   border-bottom: 3px solid var(--primary-color);
+   padding: 12px 24px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+#header h1 a {
+   color: var(--primary-color);
+   font-size: 1.8rem;
+}
+
+/* === ТЕМНАЯ НАВИГАЦИЯ === */
+#nav-sidebar {
+   background: var(--bg-card);
+   border-right: 1px solid var(--border-color);
+}
+
+#nav-sidebar li a {
+   color: var(--text-secondary);
+   padding: 10px;
+   display: block;
+   transition: all 0.3s ease;
+}
+
+#nav-sidebar li a:hover,
+#nav-sidebar li.active a {
+   background: var(--primary-color);
+   color: white;
+}
+
+/* === ТЕМНЫЙ ОСНОВНОЙ КОНТЕНТ === */
+#content {
+   background: var(--bg-card);
+   padding: 20px;
+   margin: 20px;
+   border-radius: 8px;
+   box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+/* === ТАБЛИЦЫ В ТЁМНОМ РЕЖИМЕ === */
+table {
+   background: var(--bg-secondary);
+   color: var(--text-primary);
+}
+
+th {
+   background: var(--primary-color);
+   color: white;
+}
+
+/* === ТЁМНЫЕ КНОПКИ === */
+button,
+input[type="submit"] {
+   background: var(--primary-color);
+   color: white;
+   border: none;
+   padding: 10px 15px;
+   border-radius: 6px;
+   cursor: pointer;
+   transition: background 0.3s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+   background: var(--primary-hover);
+}
+
+/* === ОШИБКИ & СООБЩЕНИЯ === */
+.errornote,
+.errorlist {
+   background: var(--message-error-bg);
+   color: var(--error-color);
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid var(--error-color);
+}
+
+/* === ФОРМЫ В ТЁМНОМ РЕЖИМЕ === */
+input,
+textarea,
+select {
+   background: var(--bg-secondary);
+   color: var(--text-primary);
+   border: 1px solid var(--border-color);
+   padding: 8px;
+   border-radius: 5px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+   border-color: var(--primary-color);
+   box-shadow: 0 0 10px var(--shadow-color);
+}
+
+/* === ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ === */
+.theme-toggle {
+   cursor: pointer;
+   border: none;
+   padding: 0;
+   background: transparent;
+   vertical-align: middle;
+   margin-inline-start: 5px;
+   margin-top: -1px;
+}
+
+.theme-toggle svg {
+   vertical-align: middle;
+   height: 1rem;
+   width: 1rem;
+   display: none;
+}
+
+/* Иконки для переключателя */
+.theme-toggle svg.theme-icon-when-auto,
+.theme-toggle svg.theme-icon-when-dark,
+.theme-toggle svg.theme-icon-when-light {
+   fill: var(--primary-color);
+   color: var(--bg-primary);
+}
+
+html[data-theme="auto"] .theme-toggle svg.theme-icon-when-auto {
+   display: block;
+}
+
+html[data-theme="dark"] .theme-toggle svg.theme-icon-when-dark {
+   display: block;
+}
+
+html[data-theme="light"] .theme-toggle svg.theme-icon-when-light {
+   display: block;
+}
+
+/* Скрытый текст */
+.visually-hidden {
+   position: absolute;
+   width: 1px;
+   height: 1px;
+   padding: 0;
+   overflow: hidden;
+   clip: rect(0, 0, 0, 0);
+   white-space: nowrap;
+   border: 0;
+   color: var(--body-fg);
+   background-color: var(--body-bg);
+}
+
+/* === АДАПТИВНОСТЬ === */
+@media (max-width: 1024px) {
+   #header {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+   }
+
+   #nav-sidebar {
+      display: none;
+   }
+
+   #content {
+      margin: 10px;
+   }
+
+   table {
+      font-size: 0.9rem;
+   }
+}
+
+@media (max-width: 768px) {
+   #header h1 {
+      font-size: 1.5rem;
+   }
+
+   #content {
+      padding: 15px;
+   }
+}

@@ -1,0 +1,195 @@
+:root {
+   --bg-primary: #0F172A;
+   --bg-secondary: #1E293B;
+   --bg-card: #252F3F;
+   --primary-color: #7C3AED;
+   --primary-hover: #6D28D9;
+   --danger-color: #DC2626;
+   --text-primary: #F8FAFC;
+   --text-secondary: #94A3B8;
+   --border-color: #334155;
+   --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Общий стиль */
+body {
+   font-family: 'Inter', Arial, sans-serif;
+   background-color: var(--bg-primary);
+   color: var(--text-primary);
+   margin: 0;
+   padding: 0;
+   line-height: 1.6;
+}
+
+.page-title {
+   text-align: center;
+   font-size: 2.5rem;
+   margin: 40px 0;
+   color: var(--text-primary);
+   font-weight: 700;
+}
+
+/* Список избранного */
+.favorites-list {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+   gap: 30px;
+   padding: 30px;
+   max-width: 1400px;
+   margin: 0 auto;
+   list-style: none;
+}
+
+.favorite-item {
+   background-color: var(--bg-card);
+   border-radius: 16px;
+   box-shadow: 0 4px 8px var(--shadow-color);
+   overflow: hidden;
+   text-align: center;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   min-height: 450px;
+   /* Увеличенная минимальная высота */
+   justify-content: space-between;
+}
+
+.favorite-item:hover {
+   transform: translateY(-8px);
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Изображение пака */
+.pack-preview {
+   width: 100%;
+   height: 400px;
+   /* Увеличенная высота изображения */
+   object-fit: cover;
+   border-radius: 12px;
+   margin-bottom: 20px;
+}
+
+/* Контент карточки */
+.card-content {
+   flex-grow: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding: 10px 0;
+}
+
+/* Название пака */
+.pack-title {
+   font-size: 1.4rem;
+   color: var(--text-primary);
+   margin-bottom: 16px;
+   font-weight: 600;
+   line-height: 1.4;
+   text-align: center;
+   letter-spacing: 1px;
+   transition: color 0.3s ease, transform 0.3s ease;
+   position: relative;
+   display: inline-block;
+   padding-bottom: 5px;
+}
+
+/* Линия под заголовком */
+.pack-title::after {
+   content: "";
+   display: block;
+   width: 60%;
+   height: 3px;
+   background-color: var(--primary-color);
+   margin: 8px auto 0;
+   transition: width 0.3s ease;
+}
+
+/* Эффект при наведении */
+.pack-title:hover {
+   color: var(--primary-hover);
+   transform: scale(1.05);
+}
+
+.pack-title:hover::after {
+   width: 80%;
+}
+
+/* Кнопка удаления */
+.remove-form {
+   margin-top: 20px;
+}
+
+.remove-btn {
+   background-color: var(--danger-color);
+   color: white;
+   font-size: 1rem;
+   font-weight: 600;
+   padding: 12px 24px;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   width: 80%;
+   max-width: 200px;
+}
+
+.remove-btn:hover {
+   background-color: #B91C1C;
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+}
+
+/* Сообщение об отсутствии избранного */
+.empty-message {
+   text-align: center;
+   font-size: 1.4rem;
+   color: var(--text-secondary);
+   margin: 60px auto;
+   max-width: 600px;
+   padding: 40px;
+   background-color: var(--bg-card);
+   border-radius: 16px;
+   box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+   .favorites-list {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      padding: 20px;
+      gap: 20px;
+   }
+
+   .favorite-item {
+      min-height: 400px;
+   }
+
+   .pack-preview {
+      height: 240px;
+   }
+
+   .pack-title {
+      font-size: 1.2rem;
+   }
+
+   .remove-btn {
+      width: 100%;
+      padding: 14px;
+   }
+}
+
+@media (max-width: 480px) {
+   .page-title {
+      font-size: 2rem;
+      margin: 30px 0;
+   }
+
+   .favorite-item {
+      min-height: 380px;
+   }
+
+   .pack-preview {
+      height: 200px;
+   }
+}

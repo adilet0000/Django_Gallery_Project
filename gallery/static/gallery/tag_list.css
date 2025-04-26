@@ -1,0 +1,85 @@
+:root {
+   --bg-primary: #0F172A;
+   --bg-secondary: #1E293B;
+   --bg-card: #252F3F;
+   --primary-color: #7C3AED;
+   --primary-hover: #6D28D9;
+   --text-primary: #F8FAFC;
+   --text-secondary: #94A3B8;
+   --border-color: #334155;
+   --shadow-color: rgba(124, 58, 237, 0.1);
+}
+
+/* Общий стиль */
+body {
+   font-family: 'Roboto', Arial, sans-serif;
+   background-color: var(--bg-primary);
+   color: var(--text-primary);
+   line-height: 1.6;
+}
+
+.tag-list-container {
+   max-width: 800px;
+   margin: 40px auto;
+   padding: 20px;
+   background-color: var(--bg-secondary);
+   border-radius: 12px;
+   box-shadow: 0 4px 8px var(--shadow-color);
+   text-align: center;
+}
+
+.tag-list-title {
+   font-size: 2rem;
+   margin-bottom: 20px;
+   color: var(--primary-color);
+}
+
+.tag-list {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   justify-content: center;
+}
+
+.tag-item {
+   display: inline-block;
+}
+
+.tag-link {
+   display: inline-block;
+   padding: 10px 20px;
+   background-color: var(--bg-card);
+   color: var(--text-primary);
+   font-size: 1rem;
+   font-weight: 600;
+   text-decoration: none;
+   border-radius: 20px;
+   transition: background-color 0.3s ease, transform 0.2s ease;
+   border: 1px solid var(--border-color);
+}
+
+.tag-link:hover {
+   background-color: var(--primary-color);
+   color: var(--bg-primary);
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+   .tag-list-container {
+      padding: 20px;
+   }
+
+   .tag-list-title {
+      font-size: 1.8rem;
+   }
+
+   .tag-link {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+   }
+}

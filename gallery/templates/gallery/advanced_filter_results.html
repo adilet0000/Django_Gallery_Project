@@ -1,0 +1,31 @@
+<h2 class="results-title">Авторы</h2>
+<div class="models-grid">
+   {% for model in models %}
+   <div class="model-card">
+      <a href="{% url 'model_detail' model.slug %}" class="model-link">
+         <h3 class="model-name">{{ model.name }}</h3>
+         <p class="model-bio">{{ model.bio }}</p>
+         <p class="model-info">Подписчиков: {{ model.subscribers.count }}</p>
+         <p class="model-info">Средний рейтинг: {{ model.average_rating|default:"-" }}</p>
+      </a>
+   </div>
+   {% empty %}
+   <p class="empty-message">Нет авторов, соответствующих фильтрам.</p>
+   {% endfor %}
+</div>
+
+<h2 class="results-title">Паки</h2>
+<div class="packs-grid">
+   {% for pack in packs %}
+   <div class="pack-card">
+      <a href="{% url 'pack_detail' pack.slug %}" class="pack-link">
+         <img src="{{ pack.preview.url }}" alt="{{ pack.title }}" class="pack-preview">
+         <h3 class="pack-title">{{ pack.title }}</h3>
+         <p class="pack-description">{{ pack.description }}</p>
+         <p class="pack-info">Средний рейтинг: {{ pack.average_rating|floatformat:1|default:"-" }}</p>
+      </a>
+   </div>
+   {% empty %}
+   <p class="empty-message">Нет паков, соответствующих фильтрам.</p>
+   {% endfor %}
+</div>

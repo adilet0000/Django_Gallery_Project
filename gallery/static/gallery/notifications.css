@@ -1,0 +1,74 @@
+/* Контейнер уведомлений */
+.notifications-container {
+   max-width: 800px;
+   margin: 2rem auto;
+   padding: 1.5rem 2rem;
+   background-color: var(--bg-secondary);
+   border-radius: 16px;
+   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Заголовок */
+.notifications-title {
+   font-size: 2rem;
+   color: var(--text-primary);
+   text-align: center;
+   margin-bottom: 1.5rem;
+}
+
+/* Список уведомлений */
+.notifications-list {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+}
+
+.notification-item {
+   background-color: var(--bg-card);
+   padding: 1rem;
+   margin-bottom: 1rem;
+   border-radius: 12px;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   display: flex;
+   flex-direction: column;
+}
+
+.notification-item:hover {
+   transform: translateY(-4px);
+   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Ссылка на пак */
+.notification-link {
+   font-size: 1.2rem;
+   font-weight: 600;
+   color: var(--primary-color);
+   text-decoration: none;
+   margin-bottom: 0.5rem;
+}
+
+.notification-link:hover {
+   text-decoration: underline;
+}
+
+/* Название модели */
+.notification-model {
+   color: var(--text-primary);
+   font-weight: 700;
+}
+
+/* Дата уведомления */
+.notification-date {
+   color: var(--text-secondary);
+   font-size: 0.9rem;
+   margin-top: 0.5rem;
+   text-align: right;
+}
+
+/* Нет уведомлений */
+.no-notifications {
+   color: var(--text-secondary);
+   font-size: 1rem;
+   text-align: center;
+   margin-top: 2rem;
+}

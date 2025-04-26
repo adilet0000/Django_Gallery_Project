@@ -1,0 +1,430 @@
+:root {
+   --primary-color: #7C3AED;
+   --primary-hover: #6D28D9;
+   --bg-dark: #0F172A;
+   --bg-darker: #020617;
+   --text-primary: #F8FAFC;
+   --text-secondary: #94A3B8;
+   --border-color: #1E293B;
+   --nav-height: 80px;
+   --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Общие стили */
+html,
+body {
+   font-family: 'Inter', Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   background-color: var(--bg-dark);
+   color: var(--text-primary);
+   height: 100%;
+   line-height: 1.6;
+}
+
+body {
+   display: flex;
+   flex-direction: column;
+}
+
+/* Шапка сайта */
+.site-header {
+   background-color: var(--bg-darker);
+   height: var(--nav-height);
+   box-shadow: 0 4px 20px var(--shadow-color);
+   position: sticky;
+   top: 0;
+   z-index: 1000;
+}
+
+.header-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   max-width: 1400px;
+   margin: 0 auto;
+   padding: 0 24px;
+   height: 100%;
+}
+
+/* Логотип */
+.logo-link {
+   margin-right: 5rem;
+   color: var(--primary-color);
+   text-decoration: none;
+   font-size: 1.75rem;
+   font-weight: 800;
+   transition: all 0.3s ease;
+}
+
+.logo-link:hover {
+   color: var(--primary-hover);
+   transform: scale(1.05);
+}
+
+/* Навигация */
+.main-nav .nav-list {
+   display: flex;
+   gap: 24px;
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+.nav-item a {
+   color: var(--text-secondary);
+   text-decoration: none;
+   font-size: 1rem;
+   padding: 8px 16px;
+   border-radius: 8px;
+   transition: all 0.3s ease;
+}
+
+.nav-item a:hover {
+   color: var(--text-primary);
+   background-color: rgba(124, 58, 237, 0.1);
+}
+
+
+.header-mobile-wrapper {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}
+
+.burger-menu {
+   display: none;
+   flex-direction: column;
+   justify-content: space-between;
+   width: 30px;
+   height: 20px;
+   background: none;
+   border: none;
+   cursor: pointer;
+   padding: 0;
+}
+
+.burger-menu span {
+   display: block;
+   width: 100%;
+   height: 2px;
+   background-color: var(--text-primary);
+   transition: all 0.3s ease;
+}
+
+
+/* Форма поиска */
+
+.search-form {
+   display: flex;
+   gap: 8px;
+   position: relative;
+   /* Для позиционирования подсказок */
+   width: 350px;
+   /* Ограничение ширины формы */
+   margin: 0 auto;
+   /* Центровка формы */
+}
+
+.search-input {
+   background-color: var(--bg-dark);
+   border: 1px solid var(--border-color);
+   color: var(--text-primary);
+   padding: 10px 14px;
+   border-radius: 8px;
+   width: 100%;
+   /* Растягивается до ширины формы */
+   transition: all 0.3s ease;
+   box-sizing: border-box;
+}
+
+.search-input:focus {
+   outline: none;
+   border-color: var(--primary-color);
+   box-shadow: 0 0 8px var(--shadow-color);
+   background-color: var(--bg-secondary);
+}
+
+.search-btn {
+   background-color: var(--primary-color);
+   color: white;
+   border: none;
+   padding: 10px 14px;
+   border-radius: 8px;
+   cursor: pointer;
+   font-size: 1rem;
+   font-weight: 600;
+   transition: all 0.3s ease, transform 0.2s ease;
+}
+
+.search-btn:hover {
+   background-color: var(--primary-hover);
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Подсказки */
+.suggestions-list {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   border: 1px solid var(--border-color);
+   border-radius: 8px;
+   background-color: var(--bg-secondary);
+   position: absolute;
+   /* Расположены относительно формы */
+   top: calc(100% + 4px);
+   /* Находятся под полем ввода */
+   left: 0;
+   right: 0;
+   /* Ширина подсказок совпадает с шириной формы */
+   z-index: 1000;
+   max-height: 250px;
+   /* Ограничение высоты */
+   overflow-y: auto;
+   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+   display: none;
+   /* Скрыто по умолчанию */
+}
+
+/* Элементы подсказок */
+.suggestion-item {
+   padding: 12px;
+   cursor: pointer;
+   color: var(--text-primary);
+   transition: background-color 0.3s ease;
+}
+
+.suggestion-item:hover {
+   background-color: var(--primary-color);
+   color: white;
+}
+
+.suggestion-link {
+   text-decoration: none;
+   color: inherit;
+   display: block;
+}
+
+/* Ссылки на избранное и уведомления */
+.nav-link,
+.favorites-link,
+.notifications-link {
+   color: var(--text-secondary);
+   text-decoration: none;
+   padding: 8px 16px;
+   border-radius: 8px;
+   transition: all 0.3s ease;
+   display: flex;
+   align-items: center;
+   gap: 6px;
+}
+
+.nav-link:hover,
+.favorites-link:hover,
+.notifications-link:hover {
+   color: var(--text-primary);
+   background-color: rgba(124, 58, 237, 0.1);
+}
+
+/* Основной контент */
+.site-main {
+   flex: 1;
+   padding: 40px 0;
+}
+
+.content-container {
+   max-width: 1400px;
+   margin: 0 auto;
+   padding: 0 24px;
+}
+
+/* Футер */
+.site-footer {
+   background-color: var(--bg-darker);
+   padding: 24px 0;
+   margin-top: auto;
+   box-shadow: 0 -4px 20px var(--shadow-color);
+}
+
+.footer-container {
+   max-width: 1400px;
+   margin: 0 auto;
+   padding: 0 24px;
+}
+
+.footer-text {
+   margin: 0;
+   color: var(--text-secondary);
+   font-size: 0.875rem;
+   text-align: center;
+   transition: color 0.3s ease;
+}
+
+.footer-text:hover {
+   color: var(--text-primary);
+}
+
+/* Адаптивность для ноутбуков (1024px - 1366px) */
+@media (max-width: 1366px) {
+   .header-container {
+      max-width: 1200px;
+      padding: 0 20px;
+   }
+
+   .search-form {
+      width: 300px;
+   }
+
+   .nav-item a {
+      font-size: 0.95rem;
+   }
+}
+
+/* Адаптивность для планшетов (768px - 1023px) */
+@media (max-width: 1024px) {
+   .header-container {
+      flex-direction: row;
+      align-items: center;
+      gap: 1px;
+   }
+
+   .logo-link {
+      font-size: 1.5rem;
+      margin: 0;
+   }
+
+   .main-nav .nav-list {
+      gap: 1px;
+   }
+
+   .search-form {
+      width: 100%;
+      margin-top: 10px;
+   }
+
+   .search-input {
+      font-size: 0.9rem;
+   }
+
+   .search-btn {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+   }
+
+   .favorites-link,
+   .notifications-link {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+   }
+}
+
+/* Адаптивность для телефонов (480px - 767px) */
+@media (max-width: 767px) {
+   
+   .site-header {
+      height: auto;
+      padding: 0;
+   }
+
+   .header-container {
+      flex-direction: column;
+      gap: 16px;
+      padding: 0 16px;
+   }
+
+   .logo-link {
+      font-size: 1.4rem;
+   }
+
+   .main-nav .nav-list {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+   }
+
+   .search-form {
+      flex-direction: column;
+      width: 100%;
+      gap: 8px;
+   }
+
+   .search-input {
+      width: 100%;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+   }
+
+   .search-btn {
+      width: 100%;
+      font-size: 0.9rem;
+      padding: 8px;
+   }
+
+   .favorites-link,
+   .notifications-link {
+      width: 100%;
+      text-align: center;
+   }
+
+   .nav-item a {
+      width: 100%;
+      text-align: center;
+   }
+}
+
+/* Адаптивность для маленьких телефонов (до 479px) */
+@media (max-width: 479px) {
+   .header-container {
+      padding: 0 12px;
+   }
+
+   .logo-link {
+      font-size: 1.2rem;
+   }
+
+   .search-form {
+      gap: 4px;
+   }
+
+   .search-input {
+      font-size: 0.85rem;
+      padding: 8px 10px;
+   }
+
+   .search-btn {
+      font-size: 0.85rem;
+      padding: 8px 10px;
+   }
+
+   .favorites-link,
+   .notifications-link {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+   }
+
+   .nav-item a {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+   }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+   from {
+      opacity: 0;
+      transform: translateY(-10px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+.content-container {
+   animation: fadeIn 0.3s ease-out;
+}
+

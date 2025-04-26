@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'gallery/submit_suggestion.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content-suggestion-container">
+    <h1>Предложить новый контент</h1>
+    <form method="post" enctype="multipart/form-data" class="suggestion-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+{% endblock %}

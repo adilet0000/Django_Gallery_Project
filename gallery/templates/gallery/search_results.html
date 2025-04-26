@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+   <link rel="stylesheet" href="{% static 'gallery/search_results.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="search-results-container">
+   <h1 class="search-results-title">Результаты поиска для: "{{ query }}"</h1>
+
+   <section class="search-section models-section">
+      <h2 class="section-title">Авторы</h2>
+      <ul class="model-list">
+         {% for model in models %}
+            <li class="model-item">
+               <a href="{% url 'model_detail' model.slug %}" class="model-link">{{ model.name }}</a>
+               <p class="model-bio">{{ model.bio }}</p>
+            </li>
+         {% empty %}
+            <p class="no-results">Авторы не найдены.</p>
+         {% endfor %}
+      </ul>
+   </section>
+
+   <section class="search-section packs-section">
+      <h2 class="section-title">Паки</h2>
+      <ul class="pack-list">
+         {% for pack in packs %}
+            <li class="pack-item">
+               <a href="{% url 'pack_detail' pack.slug %}" class="pack-link">{{ pack.title }}</a>
+               <p class="pack-description">{{ pack.description }}</p>
+            </li>
+         {% empty %}
+            <p class="no-results">Паки не найдены.</p>
+         {% endfor %}
+      </ul>
+   </section>
+</div>
+{% endblock %}

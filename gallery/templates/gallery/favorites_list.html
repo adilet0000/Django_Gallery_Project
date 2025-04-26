@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Избранное{% endblock %}
+
+{% block head %}
+   <link rel="stylesheet" href="{% static 'gallery/favorites_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Избранные</h1>
+
+{% if favorites %}
+<ul class="favorites-list">
+   {% for favorite in favorites %}
+   <li class="favorite-item">
+      <a href="{% url 'pack_detail' favorite.pack.slug %}" class="pack-link">
+         <img src="{{ favorite.pack.preview.url }}" alt="{{ favorite.pack.title }}" class="pack-preview">
+         <h2 class="pack-title">{{ favorite.pack.title }}</h2>
+      </a>
+      <form method="post" action="{% url 'remove_from_favorites' favorite.pack.slug %}" class="remove-form">
+         {% csrf_token %}
+         <button type="submit" class="btn btn-danger remove-btn">Удалить</button>
+      </form>
+   </li>
+   {% endfor %}
+</ul>
+{% else %}
+<p class="empty-message">У вас пока нет избранных.</p>
+{% endif %}
+{% endblock %}

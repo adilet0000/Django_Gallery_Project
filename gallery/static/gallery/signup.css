@@ -1,0 +1,214 @@
+/* Основные переменные */
+:root {
+   --bg-primary: #0F172A;
+   --bg-secondary: #1E293B;
+   --bg-card: #252F3F;
+   --primary-color: #7C3AED;
+   --primary-hover: #6D28D9;
+   --text-primary: #F8FAFC;
+   --text-secondary: #94A3B8;
+   --border-color: #334155;
+   --shadow-color: rgba(124, 58, 237, 0.3);
+   --glow-color: rgba(124, 58, 237, 0.5);
+   --error-bg: rgba(217, 83, 79, 0.1);
+   --error-border: #d9534f;
+   --error-text: #d9534f;
+}
+
+
+/* Контейнер формы регистрации */
+.signup-container {
+   max-width: 28rem;
+   margin: 60px auto;
+   padding: 40px;
+   background: linear-gradient(145deg, var(--bg-secondary), var(--bg-card));
+   border-radius: 16px;
+   box-shadow: 0 8px 20px var(--shadow-color);
+   text-align: center;
+   color: var(--text-primary);
+   font-family: 'Inter', sans-serif;
+   box-sizing: border-box;
+   animation: fadeIn 0.4s ease-out;
+}
+
+/* Заголовок формы */
+.signup-title {
+   font-size: 2rem;
+   margin-bottom: 20px;
+   color: var(--text-primary);
+   text-transform: uppercase;
+   font-weight: 700;
+   letter-spacing: 1px;
+   transition: color 0.3s ease;
+}
+
+.signup-title:hover {
+   color: var(--primary-hover);
+}
+
+/* Ошибки */
+.error-messages {
+   background-color: var(--error-bg);
+   color: var(--error-text);
+   padding: 1rem;
+   border: 1px solid var(--error-border);
+   border-radius: 8px;
+   margin-bottom: 20px;
+   text-align: left;
+   font-size: 0.9rem;
+   box-shadow: 0 2px 8px rgba(217, 83, 79, 0.2);
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+}
+
+.error-messages ul {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+.error-messages li {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.error-messages li::before {
+   content: "⚠️";
+   font-size: 1rem;
+}
+
+/* Форма */
+.signup-form {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+   align-items: stretch;
+   width: 100%;
+}
+
+/* Поля формы */
+.signup-form input,
+.signup-form select,
+.signup-form textarea {
+   width: 100%;
+   padding: 0.75rem 1rem;
+   font-size: 1rem;
+   border: 1px solid var(--border-color);
+   border-radius: 8px;
+   background-color: var(--bg-card);
+   color: var(--text-primary);
+   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+   box-sizing: border-box;
+}
+
+/* Анимация при фокусе */
+.signup-form input:focus,
+.signup-form select:focus,
+.signup-form textarea:focus {
+   border-color: var(--primary-color);
+   box-shadow: 0 0 10px var(--glow-color);
+   outline: none;
+   transform: scale(1.02);
+}
+
+/* Кнопка */
+.btn-submit {
+   background-color: var(--primary-color);
+   color: white;
+   font-size: 1.1rem;
+   font-weight: 600;
+   border: none;
+   padding: 0.85rem;
+   border-radius: 10px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   width: 100%;
+   box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+   text-transform: uppercase;
+}
+
+/* Анимация кнопки */
+.btn-submit:hover {
+   background-color: var(--primary-hover);
+   transform: translateY(-3px);
+   box-shadow: 0 8px 20px rgba(124, 58, 237, 0.6);
+}
+
+.btn-submit:active {
+   transform: translateY(1px);
+   box-shadow: 0 3px 8px rgba(124, 58, 237, 0.4);
+}
+
+/* Текст формы */
+.signup-form label {
+   font-size: 0.9rem;
+   color: var(--text-secondary);
+   text-align: left;
+   margin-bottom: 0.5rem;
+}
+
+.signup-container p {
+   font-size: 0.9rem;
+   color: var(--text-secondary);
+   text-align: left;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+   .signup-container {
+      padding: 30px;
+   }
+
+   .signup-form input,
+   .signup-form select,
+   .signup-form textarea {
+      font-size: 0.95rem;
+   }
+
+   .btn-submit {
+      font-size: 1rem;
+      padding: 0.75rem;
+   }
+
+   .signup-title {
+      font-size: 1.6rem;
+   }
+}
+
+@media (max-width: 480px) {
+   .signup-container {
+      width: 90%;
+      padding: 20px;
+   }
+
+   .signup-title {
+      font-size: 1.5rem;
+   }
+
+   .signup-form input,
+   .signup-form select,
+   .signup-form textarea {
+      font-size: 0.9rem;
+      padding: 0.7rem;
+   }
+
+   .btn-submit {
+      font-size: 0.95rem;
+      padding: 0.7rem;
+   }
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+   from {
+      opacity: 0;
+      transform: translateY(-10px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}

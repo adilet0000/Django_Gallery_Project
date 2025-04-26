@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block title %} {{ pack.title }} — Просмотр пака {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<link rel="stylesheet" href="{% static 'gallery/pack_detail.css' %}?v=1">
+<script src="{% static 'js/favorite.js' %}"></script>
+<script src="{% static 'js/pack_rating.js' %}"></script>
+<script src="{% static 'js/comment.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<header class="header pack-header">
+   <h1 class="pack-title">{{ pack.title }}</h1>
+   <p class="pack-description">{{ pack.description }}</p>
+
+   <a class="btn btn-primary back-btn" href="{% url 'model_detail' pack.model.slug %}">Назад к списку паков</a>
+
+   {% if user.is_authenticated %}
+   {% if is_favorite %}
+   <form method="post" action="{% url 'remove_from_favorites' pack.slug %}" class="favorite-form">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Удалить из избранного</button>
+   </form>
+   {% else %}
+   <form method="post" action="{% url 'add_to_favorites' pack.slug %}" class="favorite-form">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-success">Добавить в избранное</button>
+   </form>
+   {% endif %}
+   {% else %}
+   <p class="login-prompt">Чтобы добавить в избранное, <a href="{% url 'login' %}" class="login-link">войдите в
+         систему</a>.</p>
+   {% endif %}
+</header>
+
+<div class="photos-container">
+   {% for photo in photos %}
+   <div class="photo-card">
+      <a href="{{ photo.image.url }}" class="glightbox photo-link" data-gallery="gallery1">
+         <img src="{{ photo.image.url }}" alt="{{ photo.description }}" class="photo-img">
+      </a>
+      {% if photo.description %}
+      <p class="photo-description">{{ photo.description }}</p>
+      {% endif %}
+      <a href="{{ photo.image.url }}" download class="btn btn-download">Скачать</a>
+   </div>
+   {% endfor %}
+</div>
+
+<div class="videos-container">
+   <h3 class="videos-title">Видео</h3>
+   <div class="video-grid">
+      {% for video in pack.videos.all %}
+      <div class="video-card">
+         <video controls class="video-element">
+            <source src="{{ video.video.url }}" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+         </video>
+         {% if video.description %}
+         <p class="video-description">{{ video.description }}</p>
+         <a href="{{ video.video.url }}" download class="btn btn-download">Скачать</a>
+         {% endif %}
+      </div>
+      {% empty %}
+      <p class="no-videos-message">В этом паке пока нет видео.</p>
+      {% endfor %}
+   </div>
+</div>
+
+
+
+<div class="comments-section">
+   <h3 class="comments-title">Комментарии</h3>
+   <div class="comments-list">
+      {% for comment in comments %}
+      <div class="comment-item">
+         <strong class="comment-author">{{ comment.user.username }}</strong>
+         <p class="comment-text">{{ comment.text }}</p>
+         <small class="comment-date">{{ comment.created_at|date:"d M Y, H:i" }}</small>
+
+         {% if user.is_authenticated and comment.user == user %}
+         <div class="comment-actions">
+            <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-sm btn-warning">Редактировать</a>
+            <a href="{% url 'delete_comment' comment.pk %}" class="btn btn-sm btn-danger">Удалить</a>
+         </div>
+         {% endif %}
+      </div>
+      {% empty %}
+      <p class="no-comments">Комментариев пока нет.</p>
+      {% endfor %}
+   </div>
+
+
+   {% if user.is_authenticated %}
+   <form method="post" class="comment-form">
+      {% csrf_token %}
+      {{ comment_form.as_p }}
+      <button type="submit" name="comment_submit" class="btn btn-primary">Отправить</button>
+   </form>
+   {% else %}
+   <p class="login-prompt">Для добавления комментария <a href="{% url 'login' %}" class="login-link">войдите в
+         систему</a>.</p>
+   {% endif %}
+
+   {% if comments.has_other_pages %}
+   <div class="pagination">
+      {% if comments.has_previous %}
+      <a href="?page={{ comments.previous_page_number }}" class="btn btn-outline-primary">&laquo; Назад</a>
+      {% endif %}
+
+      <span class="current-page">
+         Страница {{ comments.number }} из {{ comments.paginator.num_pages }}
+      </span>
+
+      {% if comments.has_next %}
+      <a href="?page={{ comments.next_page_number }}" class="btn btn-outline-primary">Вперед &raquo;</a>
+      {% endif %}
+   </div>
+   {% endif %}
+
+   <div class="rating-section">
+      <h3 class="rating-title">Оценка</h3>
+      <p class="average-rating">Средняя оценка: {{ average_rating|floatformat:1 }}</p>
+      <p class="total-ratings">Количество оценок: {{ total_ratings }}</p>
+      {% if user.is_authenticated %}
+
+
+      <form method="post" class="rating-form" data-slug="{{ pack.slug }}" data-app-label="{{ pack|get_app_label }}"
+         data-model-name="{{ pack|get_model_name }}">
+         {% csrf_token %}
+         <div class="stars">
+            {% for i in "54321" %}
+            <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" class="star-input">
+            <label for="star{{ i }}" class="star-label" title="{{ i }}"></label>
+            {% endfor %}
+         </div>
+         <button type="submit" name="rating_submit" class="btn btn-primary">Поставить оценку</button>
+      </form>
+      {% else %}
+      <p class="login-prompt">Для оценки пака <a href="{% url 'login' %}" class="login-link">войдите в систему</a>.</p>
+      {% endif %}
+   </div>
+
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+   const lightbox = GLightbox({
+      touchNavigation: true,
+      loop: true,
+      zoomable: true,
+      draggable: true,
+   });
+</script>
+{% endblock %}

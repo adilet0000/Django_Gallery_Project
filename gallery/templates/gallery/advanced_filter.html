@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Продвинутая фильтрация{% endblock %}
+
+{% block head %}
+   <link rel="stylesheet" href="{% static 'gallery/advanced_filter.css' %}">
+   <script src="{% static 'js/advanced_filter.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="filter-container">
+   <h1 class="filter-title">Продвинутая фильтрация</h1>
+
+   <!-- Форма фильтрации -->
+   <form method="get" action="{% url 'advanced_filter' %}" class="filter-form">
+      <fieldset class="filter-section">
+         <legend class="filter-legend">Фильтрация по тегам</legend>
+         <div class="tags-container">
+            {% for tag in all_tags %}
+            <label class="tag-label">
+               <input type="checkbox" name="tags" value="{{ tag.slug }}" class="tag-checkbox"
+               {% if tag.slug in selected_tags %}checked{% endif %}>
+               {{ tag.name }}
+            </label>
+            {% endfor %}
+         </div>
+      </fieldset>
+
+      <fieldset class="filter-section">
+         <legend class="filter-legend">Сортировка</legend>
+         <select name="sort_by" class="filter-select">
+            <option value="created_at" {% if sort_by == 'created_at' %}selected{% endif %}>По дате</option>
+            <option value="popularity" {% if sort_by == 'popularity' %}selected{% endif %}>По популярности</option>
+            <option value="average_rating" {% if sort_by == 'average_rating' %}selected{% endif %}>По средней оценке</option>
+         </select>
+      </fieldset>
+
+      <button type="submit" class="filter-button">Применить</button>
+   </form>
+
+   <hr class="divider">
+
+   <div class="filtered-results">
+      {% include 'gallery/advanced_filter_results.html' %}
+  </div>
+  
+</div>
+{% endblock %}

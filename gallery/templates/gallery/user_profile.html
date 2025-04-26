@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'gallery/user_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+   <h3 class="profile-header">Профиль пользователя: <span class="username">{{ profile_user.username }}</span></h3>
+
+   <div class="profile-section">
+      <h4 class="section-header">Ваши комментарии</h4>
+      <ul class="comments-list">
+         {% for comment in comments %}
+         <li class="comment-item">
+            <p><strong>Пак:</strong> <a href="{% url 'pack_detail' comment.pack.slug %}" class="pack-link">{{comment.pack.title}}</a></p>
+            <p><strong>Комментарий:</strong> {{ comment.text }}</p>
+            <p class="comment-date">{{ comment.created_at|date:"d M Y, H:i" }}</p>
+         </li>
+         {% empty %}
+         <p class="empty-message">Вы еще не оставили комментариев.</p>
+         {% endfor %}
+      </ul>
+   </div>
+
+   <div class="profile-section">
+      <h4 class="section-header">Ваши оценки</h4>
+
+      <div class="ratings-group">
+         <!-- Раздел оценок моделей -->
+         <div class="ratings-subgroup">
+            <h5 class="subgroup-header">Оценки на авторов</h5>
+            <ul class="ratings-list">
+               {% for rating in ratings %}
+               {% if rating.content_type.model == "model" %}
+               <li class="rating-item">
+                  <p>
+                     <strong>Автор:</strong>
+                     <a href="{% url 'model_detail' rating.content_object.slug %}" class="model-link">
+                        {{ rating.content_object.name }}
+                     </a>
+                  </p>
+                  <p><strong>Оценка:</strong> <span class="rating-score">{{ rating.score }}</span></p>
+               </li>
+               {% endif %}
+               {% empty %}
+               <p class="empty-message">Вы еще не поставили оценок на авторов.</p>
+               {% endfor %}
+            </ul>
+         </div>
+
+         <!-- Раздел оценок паков -->
+         <div class="ratings-subgroup">
+            <h5 class="subgroup-header">Оценки на паки</h5>
+            <ul class="ratings-list">
+               {% for rating in ratings %}
+               {% if rating.content_type.model == "pack" %}
+               <li class="rating-item">
+                  <p>
+                     <strong>Пак:</strong>
+                     <a href="{% url 'pack_detail' rating.content_object.slug %}" class="pack-link">
+                        {{ rating.content_object.title }}
+                     </a>
+                  </p>
+                  <p><strong>Оценка:</strong> <span class="rating-score">{{ rating.score }}</span></p>
+               </li>
+               {% endif %}
+               {% empty %}
+               <p class="empty-message">Вы еще не поставили оценок на паки.</p>
+               {% endfor %}
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

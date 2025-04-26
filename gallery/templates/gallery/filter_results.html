@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Результаты фильтрации{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'gallery/filter_results.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Результаты по тегу: {{ tag.name }}</h1>
+
+<section class="section models-section">
+   <h2 class="section-title">Модели</h2>
+   <div class="models-container">
+      {% for model in models %}
+         <div class="model-card">
+            <a href="{% url 'model_detail' model.slug %}" class="model-link">
+               <img class="model-avatar" src="{{ model.avatar.url }}" alt="{{ model.name }}">
+               <h3 class="model-name">{{ model.name }}</h3>
+               <p class="model-bio">{{ model.bio }}</p>
+            </a>
+         </div>
+      {% empty %}
+         <p class="empty-message">Нет авторов с этим тегом.</p>
+      {% endfor %}
+   </div>
+</section>
+
+<section class="section packs-section">
+   <h2 class="section-title">Паки</h2>
+   <div class="packs-container">
+      {% for pack in packs %}
+         <div class="pack-card">
+            <a href="{% url 'pack_detail' pack.slug %}" class="pack-link">
+               <img class="pack-cover" src="{{ pack.preview.url }}" alt="{{ pack.title }}">
+               <h3 class="pack-title">{{ pack.title }}</h3>
+            </a>
+         </div>
+      {% empty %}
+         <p class="empty-message">Нет паков с этим тегом.</p>
+      {% endfor %}
+   </div>
+</section>
+{% endblock %}

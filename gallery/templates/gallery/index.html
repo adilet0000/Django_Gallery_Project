@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'gallery/main.css' %}">
+<script src="{% static 'js/filter_by_tag.js' %}"></script>
+<script src="{% static 'js/models.js' %}"></script>
+{% endblock %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="models-section">
+    <a href="{% url 'advanced_filter' %}" class="btn btn-secondary advanced-filter-link">Продвинутая фильтрация</a>
+
+    <h4 class="tags-header">
+        <a href="{% url 'tag_list' %}" class="all-tags-link">Список тегов</a>
+    </h4>
+
+    <div class="tags-list">
+        {% for tag in model.tags.all %}
+        <a href="{% url 'filter_by_tag' tag.slug %}" class="tag-item">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
+
+    {% if tag %}
+    <h2 class="models-title">Авторы с тегом: "{{ tag.name }}"</h2>
+    {% endif %}
+
+    <!-- Форма для фильтрации -->
+    <div class="filter-section">
+        <form method="get" action="{% url 'index' %}" class="filter-form">
+            <select name="sort_by" class="filter-select">
+                <option value="subscribers" {% if request.GET.sort_by == 'subscribers' %}selected{% endif %}>По подписчикам</option>
+                <option value="rating" {% if request.GET.sort_by == 'rating' %}selected{% endif %}>По рейтингу</option>
+            </select>
+            <button type="submit" class="btn btn-primary filter-apply-btn">Применить</button>
+        </form>
+    </div>
+
+    <div class="models-flex-container">
+        {% for model in model_list %}
+        <div class="model-card">
+            <a href="{% url 'model_detail' model.slug %}" class="model-link">
+                <img src="{{ model.avatar.url }}" alt="{{ model.name }}" class="model-avatar">
+                <h2 class="model-name">{{ model.name }}</h2>
+                <p class="model-bio">{{ model.bio }}</p>
+            </a>
+            <div class="model-stats">
+                <p class="stat-item"><strong>Подписчиков:</strong> {{ model.subscribers.count }}</p>
+                <p class="stat-item"><strong>Средний рейтинг:</strong> <span class="rating">{{ model.average_rating}}</span></p>
+            </div>
+            <div class="tags">
+                {% for tag in model.tags.all %}
+                <a href="{% url 'filter_by_tag' tag.slug %}" class="tag">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by }}{% endif %}" class="btn btn-outline-primary">&laquo; Назад</a>
+        {% endif %}
+    
+        <span class="current-page">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+        </span>
+    
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by }}{% endif %}" class="btn btn-outline-primary">Вперед &raquo;</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrahead %}
+{% comment %} 
+   {{ block.super }}
+
+   <link rel="stylesheet" href="{% static 'admin/custom_base.css' %}">
+   <link rel="stylesheet" href="{% static 'admin/custom_darkmode.css' %}">
+   <link rel="stylesheet" href="{% static 'admin/custom_dashboard.css' %}">
+   <link rel="stylesheet" href="{% static 'admin/custom_nav_sidebar.css' %}">
+   <link rel="stylesheet" href="{% static 'admin/custom_responsive.css' %}"> {% endcomment %}
+
+{% endblock %}

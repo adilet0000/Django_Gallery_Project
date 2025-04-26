@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Вход{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'gallery/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+   <h2 class="login-title">Вход</h2>
+   <form method="post" class="login-form">
+      {% csrf_token %}
+      <div class="form-group">
+         {{ form.as_p }}
+      </div>
+      <button type="submit" class="btn btn-login">Войти</button>
+   </form>
+   <p class="login-footer">Нет аккаунта? <a href="{% url 'signup' %}" class="signup-link">Регистрация</a>.</p>
+</div>
+{% endblock %}

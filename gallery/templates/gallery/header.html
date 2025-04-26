@@ -1,0 +1,43 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'gallery/header.css' %}">
+
+
+{% block mobile_header %}
+<div id="mobile-header" class="mobile-header hidden">
+    <div class="mobile-header-container">
+        <button id="close-mobile-menu" class="mobile-close-btn">×</button>
+        <nav class="mobile-nav">
+            <ul class="mobile-nav-list">
+                {% if user.is_authenticated %}
+                    <li class="mobile-nav-item"><a href="{% url 'index' %}" class="mobile-nav-link">Главная</a></li>
+                    <li class="mobile-nav-item"><a href="{% url 'user_profile' user.username %}" class="mobile-nav-link">Профиль</a></li>
+                    <li class="mobile-nav-item"><a href="{% url 'submit_suggestion' %}" class="mobile-nav-link">Предложить контент</a></li>
+                    <li class="mobile-nav-item"><a href="{% url 'favorites_list' %}" class="mobile-nav-link">Избранное</a></li>
+                    <li class="mobile-nav-item"><a href="{% url 'notifications' %}" class="mobile-nav-link">Уведомления</a></li>
+                    <li class="mobile-nav-item"><a href="{% url 'logout' %}" class="mobile-nav-link">Выйти</a></li>
+                {% else %}
+                    <li class="mobile-nav-item"><a href="{% url 'login' %}" class="mobile-nav-link">Войти</a></li>
+                    <li class="mobile-nav-item"><a href="{% url 'signup' %}" class="mobile-nav-link">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        
+        <form action="{% url 'search' %}" method="get" class="mobile-search-form" accept-charset="utf-8">
+            <input 
+                type="text" 
+                name="q" 
+                id="mobile-search-input" 
+                class="mobile-search-input" 
+                placeholder="Поиск авторов или паков..." 
+                autocomplete="off"
+                pattern=".*" 
+            >
+            <button type="submit" class="mobile-search-btn">Найти</button>
+        </form>
+    </div>
+</div>
+
+<button id="mobile-menu-toggle" class="mobile-menu-btn">☰</button>
+<script src="{% static 'js/burger.js' %}"></script>
+
+{% endblock mobile_header %}
